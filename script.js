@@ -4,8 +4,10 @@ var m_names = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", 
 var curr_date = today.getDate();
 var curr_month = today.getMonth();
 var curr_year = today.getFullYear();
+var mon = m_names[curr_month] + ".";
+if (curr_month === 4) var mon = m_names[curr_month];
 
-$("#todayDate").html(m_names[curr_month] + ". " + curr_date + ", " + curr_year);
+$("#todayDate").html(mon + ". " + curr_date + ", " + curr_year);
 $("#datepicker").datepicker();
 var resultString = "";
 
@@ -15,12 +17,13 @@ function daysLeft() {
     var c = 24*60*60*1000;
     var diffDays = Math.round((a - b)/c);
 
-    resultString = ("<p>You have " + diffDays + " days left!");
+    if (diffDays < 0) var resultString = ("That date has already passed!");
+    else var resultString = ("You have " + diffDays + " days left!");
+    return resultString;
 }
 
 $("#datepicker").on("change", function(){
-    daysLeft();
-    $("#result").html(resultString);
+    $("#result").html(daysLeft());
 });
 
 
