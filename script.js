@@ -12,18 +12,17 @@ function daysLeft() {
 	var a = $( "#datepicker" ).datepicker('getDate').getTime();
 	// solutions for 9, 10, 11 and 12 go here:
 
-	// var b = _____
-	// var c = _____
-	// var d = _____
-
+	var b = a - today.getTime();
+	var c = 1000 * 60 * 60 * 24;
+	var d = Math.ceil(b / c);
 	// we will remove this later:
-	return a;
+	return d;
 }
 
 
-$("#datepicker").on("change", function(a){
-	daysLeft();
-	console.log(a);
+$("#datepicker").on("change", function(){
+	
+	console.log(daysLeft());
 });
 
 
